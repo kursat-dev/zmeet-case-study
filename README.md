@@ -31,34 +31,34 @@ The system utilizes a **Hybrid Architecture** combining serverless scalability w
 
 ```mermaid
 graph TD
-    Client[Client (Next.js + React 19)]
-    
-    subgraph "Application Layer"
+    Client[Client - Next.js & React]
+
+    subgraph ApplicationLayer
         Next[Next.js App Router]
-        Socket[Custom Node.js/Socket.io Server]
-    end
-    
-    subgraph "Data & Storage"
-        DB[(MongoDB)]
-        Redis[(Redis/Cache)]
-    end
-    
-    subgraph "External Services"
-        Stream[Stream.io (WebRTC/AV)]
-        Groq[Groq AI (Llama 3)]
-        Resend[Resend (Email)]
+        Socket[Node.js Socket Server]
     end
 
-    Client -->|http/rest| Next
-    Client -->|ws/wss| Socket
-    Client -->|rtp/dtls| Stream
-    
+    subgraph DataStorage
+        DB[(MongoDB)]
+        Cache[(Redis Cache)]
+    end
+
+    subgraph ExternalServices
+        Media[Media Streaming Service]
+        AI[AI Provider]
+        Mail[Email Service]
+    end
+
+    Client --> Next
+    Client --> Socket
+    Client --> Media
+
     Next --> DB
-    Next --> Groq
-    Next --> Resend
-    
+    Next --> AI
+    Next --> Mail
+
     Socket --> DB
-    Socket --> Redis
+    Socket --> Cache
 ```
 
 ### Core Components
