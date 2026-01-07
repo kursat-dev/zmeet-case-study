@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🎥 zmeet
+# 🎥 ZMeet
 
 **Secure, Real-Time Meeting & Collaboration Platform**
 
